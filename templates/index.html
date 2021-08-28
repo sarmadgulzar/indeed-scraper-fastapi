@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', path='css/bulma.min.css') }}" rel="stylesheet">
+    <title>Indeed Salary Scraper</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item has-text-weight-bold" href="/">
+                        Indeed Salary Scraper
+                    </a>
+
+                    <a class="navbar-item" href="https://github.com/sarmadgulzar/indeed-scraper-fastapi">
+                        Code on GitHub
+                    </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            API Documentation
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="/docs">
+                                Swagger
+                            </a>
+                            <a class="navbar-item" href="/redoc">
+                                Redoc
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="has-text-centered">
+            <h1 class="is-size-1 mt-5 text-center">A demo app using <a href="https://fastapi.tiangolo.com/">FastAPI</a></h1>
+            <p class="text-center lead">which scraps the salaries from <a href="https://indeed.com/">Indeed</a>. You can also specify job title, location and salary type (Hourly, Yearly etc.).</p>
+        </div>
+        <h2 class="is-size-2">API Endpoints</h2>
+        <ul>
+            <li>
+                <h4 class="is-size-4">Get Salary</h4>
+                <p><strong>Method:</strong> <code>GET</code></p>
+                <p><strong>Endpoint:</strong> <a href="/salary?job_title=Software+Engineer&salary_type=YEARLY&location=San+Francisco">/salary?job_title=Software+Engineer&salary_type=YEARLY&location=San+Francisco</a></p>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
