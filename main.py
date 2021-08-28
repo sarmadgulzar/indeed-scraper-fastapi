@@ -18,7 +18,7 @@ async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
-@app.get("/salary/")
+@app.get("/api/salary/")
 async def salary(salary_type: SalaryType, job_title: str, location: Optional[str] = ""):
     scraper = IndeedScraper(salary_type=salary_type)
     salary = scraper.scrape(job_title=job_title, location=location)
