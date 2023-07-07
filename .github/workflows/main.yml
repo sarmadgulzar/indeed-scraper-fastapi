@@ -1,24 +1,24 @@
-name: Push to Space
+name: Push to Deta Space
 on: push
 
 jobs:
-  push-to-space:
+  push-to-deta-space:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Get short SHA
-        id: short-sha
+      - name: Install Deta Space CLI
         run: |
-          echo "sha=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_ENV
+          curl -fsSL https://get.deta.dev/space-cli.sh | sh
+          echo "$HOME/.detaspace/bin" >> $GITHUB_PATH
+          echo "SPACE_ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> $GITHUB_ENV
 
-      - name: Deta Space Deployment Github Action
-        uses: neobrains/space-deployment-github-action@v0.5
-        with:
-          access_token: ${{ secrets.ACCESS_TOKEN }}
-          project_id: ${{ secrets.PROJECT_ID }}
-          space_push: true
-          space_release: true
-          list_on_discovery: true
-          release_version: ${{ env.sha }}
+      - name: Get short SHA
+        run: |
+          echo "SHA=$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_ENV
+
+      - name: Push changes to Deta Space
+        run: |
+          space link --id "${{ secrets.PROJECT_ID }}"
+          space push -t "${{ env.SHA }}"
